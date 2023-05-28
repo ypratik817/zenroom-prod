@@ -1,0 +1,133 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css') }}">
+    <title>ZenRoom - Login</title>
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="{{ category }}" >
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+    <div class="flex-container">
+        <div class="content-container">
+          <div class="form-container">
+            <form action="" method= "POST">
+              {{form.hidden_tag()}}
+              <h1>
+                Login
+              </h1>
+              <br>
+              <br>
+              <span class="subtitle">Email:</span>
+              <br>
+              {{form.email}}
+              <br>
+              <span class="subtitle">Password:</span>
+              <br>
+              {{form.password}}
+              <br><br>
+              <input type="submit" value="SUBMIT" class="submit-btn">
+            </form>
+          </div>
+        </div>
+      </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | ZenRoom</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
+</head>
+<body>
+  <section class="forms-section">
+    <h1 class="section-title">Animated Forms</h1>
+    <div class="forms">
+      <div class="form-wrapper is-active">
+        <button type="button" class="switcher switcher-login">
+          Login
+          <span class="underline"></span>
+        </button>
+        <form class="form form-login">
+          {{form.hidden_tag()}}
+          <fieldset>
+            <legend>Please, enter your email and password for login.</legend>
+            <div class="input-block">
+              {{ form.email.label}}
+              {{ form.email(id="login-email") }}
+            </div>
+            <div class="input-block">
+
+              {{ form.password.label }}
+              {{ form.password(id="login-password") }}
+
+  
+            </div>
+          </fieldset>
+          {{ form.submit(class="btn-login") }}
+        </form>
+      </div>
+      <div class="form-wrapper">
+        <button type="button" class="switcher switcher-signup">
+          Sign Up
+          <span class="underline"></span>
+        </button>
+        <form class="form form-signup">
+          <fieldset>
+            <legend>Please, enter your email, password, age, and gender for sign up.</legend>
+            <div class="input-block">
+              {{form.regi_email.label(for="signup-password")}}
+                {{form.regi_email(id="signup-email")}}
+            </div>
+            <div class="input-block">
+
+                {{form.regi_password.label(for="signup-password")}}
+                {{form.regi_password(id="signup-password")}}
+            </div>
+            <div class="input-block">
+             
+              {{form.regi_confirm_password.label(for='signup-password-confirm')}}
+              {{form.regi_confirm_password(id="signup-password-confirm")}}
+            </div>
+            <div class="input-block">
+              <label for="signup-age">Age</label>
+              {{ form.age.label }}
+              {{ form.age(id="signup-age" ) }}
+            </div>
+            <div class="input-block">
+              {{ form.regi_gender.label }}
+            {{ form.regi_gender(placeholder="Select your gender", id="signup-gender") }}
+            </div>
+          </fieldset>
+          <!-- <button type="submit" class="btn-signup">Continue</button> -->
+          {{form.submit(class="btn-signup")}}
+        </form>
+      </div>
+    </div>
+  </section>  
+
+<script type="application/javascript">
+  const switchers = [...document.querySelectorAll('.switcher')]
+
+  switchers.forEach(item => {
+    item.addEventListener('click', function() {
+      switchers.forEach(item => item.parentElement.classList.remove('is-active'))
+      this.parentElement.classList.add('is-active')
+    })
+  })
+</script>
+</body>
+</html>
